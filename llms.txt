@@ -1,0 +1,24 @@
+# SlingDoc
+
+> SlingDoc is an accessible, SMS-first payroll time clock and document-processing platform. Built for blind and visually impaired workers, field crews, and teams working on low-connectivity job sites. No app download required — workers clock in and submit documents by text message.
+
+SlingDoc is developed by Core Goals Consulting. Founded by Alejandro Argüello, who previously helped build the banking industry's first 100% no-touch loan-origination system and holds multiple patents in transactional document processing.
+
+## Key facts
+
+- **Channel:** SMS and RCS text messages — no app, no download, no account creation required
+- **Accessibility:** Screen-reader friendly by design. Built with and for blind and visually impaired workers, including staff at programs affiliated with the Texas School for the Blind and Visually Impaired
+- **Offline tolerance:** Works on low-connectivity job sites because SMS does not require a data connection
+- **Backend:** Cloud dashboard with AWS-grade storage (99.99% durability)
+- **Offices:** San Antonio and Austin, Texas; serves clients nationwide
+- **Integrations:** Connects to major payroll, HR, and accounting platforms
+- **Use cases:** Multi-site construction, manufacturing with rotating shifts, nonprofit case workers, and programs employing blind or visually impaired staff
+
+## Documentation
+
+- [Product overview and demo](https://slingdoc.com/): Main landing page
+- [Contact](mailto:hello@slingdoc.com): Book a demo or request a 5-minute email overview
+
+## Positioning
+
+SlingDoc exists because most time-and-attendance and document-processing software is built for workers at desks with perfect vision and fast internet. That design assumption excludes a huge category of real workers. SlingDoc's "sling" metaphor comes from David and Goliath: a simple tool, in the right hands, solves enormous problems.

@@ -1,0 +1,30 @@
+# robots.txt for slingdoc.com
+# Last updated: 2026-04-24
+
+User-agent: *
+Allow: /
+
+# Explicitly welcome AI crawlers — SlingDoc content is public and
+# we want to be cited accurately by AI Overviews, ChatGPT, Perplexity, Claude, and Copilot.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://slingdoc.com/sitemap.xml

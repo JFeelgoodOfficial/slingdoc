@@ -1,0 +1,898 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0A1A3C" />
+
+    <title>SlingDoc — Accessible payroll time clock over SMS</title>
+    <meta
+      name="description"
+      content="SMS-first payroll time clock and document capture for blind/VI workers, field crews, and low-connectivity job sites. No app to download."
+    />
+    <meta name="author" content="Core Goals Consulting" />
+    <link rel="canonical" href="https://slingdoc.com/" />
+
+    <!-- Favicons / home screen -->
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/assets/favicon-16.png" sizes="16x16" type="image/png" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Social / Open Graph -->
+    <meta property="og:site_name" content="SlingDoc" />
+    <meta property="og:title" content="SlingDoc — Accessible payroll time clock over SMS" />
+    <meta
+      property="og:description"
+      content="Text in. Clock in. Documents done. SlingDoc is the SMS-first time clock for blind/VI workers, field crews, and low-connectivity teams."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://slingdoc.com/" />
+    <meta property="og:image" content="https://slingdoc.com/assets/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="SlingDoc — Accessible payroll time clock over SMS" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SlingDoc — Accessible payroll time clock over SMS" />
+    <meta name="twitter:description" content="Text in. Clock in. Documents done. SMS-first payroll for the workers your other tools forget." />
+    <meta name="twitter:image" content="https://slingdoc.com/assets/twitter-image.png" />
+    <meta name="twitter:image:alt" content="SlingDoc — Accessible payroll time clock over SMS" />
+
+    <!-- Fonts: self-hosted via @fontsource (see styles.css). Preload the
+         display weights that render above the fold to improve LCP. -->
+    <link rel="preload" href="/assets/fonts/bricolage-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/bricolage-600.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/manrope-500.woff2" as="font" type="font/woff2" crossorigin />
+
+    <link rel="stylesheet" href="./styles.css" />
+
+    <!-- ES Module import map for Three.js via CDN (no build step required).
+         Module files are content-hash-verified via modulepreload integrity
+         (universal support) and the importmap integrity field (Chrome 127+,
+         Firefox 134+). If CDN content ever differs from these hashes,
+         browsers will block execution. -->
+    <link
+      rel="modulepreload"
+      href="https://cdn.jsdelivr.net/npm/three@0.163.0/build/three.module.js"
+      integrity="sha384-yQjt8MxgaibK/2q9rswHtmpprSJXTyvk5UewNPUcnFG8AS53v7JY3JcBgjMD0REu"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="modulepreload"
+      href="https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/geometries/RoundedBoxGeometry.js"
+      integrity="sha384-S52/WAm3DaIIFna675h5dmavqea/akLlPFtPdnzgWWhnz+/nMqR6PPsSXPOd8Gpw"
+      crossorigin="anonymous"
+    />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.163.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/"
+        },
+        "integrity": {
+          "https://cdn.jsdelivr.net/npm/three@0.163.0/build/three.module.js": "sha384-yQjt8MxgaibK/2q9rswHtmpprSJXTyvk5UewNPUcnFG8AS53v7JY3JcBgjMD0REu",
+          "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/geometries/RoundedBoxGeometry.js": "sha384-S52/WAm3DaIIFna675h5dmavqea/akLlPFtPdnzgWWhnz+/nMqR6PPsSXPOd8Gpw"
+        }
+      }
+    </script>
+
+    <!-- ============================================================
+         Structured data — JSON-LD
+         Enables: Organization knowledge panel, software rich results,
+         sitelinks search box, accurate AI citations.
+         ============================================================ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://slingdoc.com/#organization",
+          "name": "SlingDoc",
+          "legalName": "Core Goals Consulting",
+          "url": "https://slingdoc.com/",
+          "logo": "https://slingdoc.com/assets/logo.png",
+          "image": "https://slingdoc.com/assets/og-image.png",
+          "description": "Accessible, SMS-first payroll time clock and document-processing platform for blind/VI workers, field crews, and low-connectivity teams.",
+          "founder": { "@id": "https://slingdoc.com/#founder" },
+          "address": [
+            {
+              "@type": "PostalAddress",
+              "addressLocality": "San Antonio",
+              "addressRegion": "TX",
+              "addressCountry": "US"
+            },
+            {
+              "@type": "PostalAddress",
+              "addressLocality": "Austin",
+              "addressRegion": "TX",
+              "addressCountry": "US"
+            }
+          ],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "sales",
+            "email": "hello@slingdoc.com",
+            "areaServed": "US",
+            "availableLanguage": ["English"]
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://slingdoc.com/#founder",
+          "name": "Alejandro Argüello",
+          "jobTitle": "Founder",
+          "worksFor": { "@id": "https://slingdoc.com/#organization" },
+          "description": "Founder of SlingDoc and principal at Core Goals Consulting. Previously helped build the banking industry's first 100% no-touch loan-origination system; holds multiple patents in transactional document processing."
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://slingdoc.com/#website",
+          "url": "https://slingdoc.com/",
+          "name": "SlingDoc",
+          "publisher": { "@id": "https://slingdoc.com/#organization" },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://slingdoc.com/#software",
+          "name": "SlingDoc",
+          "applicationCategory": "BusinessApplication",
+          "applicationSubCategory": "Time and Attendance Software",
+          "operatingSystem": "Any (SMS / RCS)",
+          "url": "https://slingdoc.com/",
+          "description": "SMS-based payroll time clock and document capture. Workers clock in and submit documents by text — no app download, screen-reader friendly, works on low-connectivity job sites.",
+          "featureList": [
+            "SMS-first time and attendance",
+            "Screen-reader friendly by design",
+            "Works without a data connection",
+            "Integrates with payroll, HR, and accounting systems",
+            "Manager dashboard for approvals and reporting",
+            "Document capture via MMS / photo text",
+            "Built for blind and visually impaired workers"
+          ],
+          "author": { "@id": "https://slingdoc.com/#organization" },
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "description": "Contact for pricing — book a demo"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://slingdoc.com/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Does SlingDoc require workers to download an app?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. SlingDoc works entirely over SMS and MMS. Workers use the messaging app that comes on their phone. There is nothing to install, no account to create, and no username or password for the worker to remember."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is SlingDoc compatible with screen readers?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. SlingDoc is designed for blind and visually impaired workers from the start. Because it runs inside the phone's native Messages app, it inherits whatever screen reader, voice assistant, or accessibility setting the user already has configured — VoiceOver, TalkBack, or otherwise — instead of requiring a separate accessible interface."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What if a worker is on a job site with no cell data?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "SMS works on almost any cellular signal — including signals too weak to load data-based apps. Workers can clock in by text even on low-connectivity sites. When a photo attachment is used for a document, it sends when signal is available; the clock-in timestamp is recorded at the moment of texting."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What payroll and HR systems does SlingDoc integrate with?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "SlingDoc syncs with major payroll, HR, and accounting platforms. Time records, document metadata, and worker profiles flow into the systems your finance and HR teams already use, so you do not need to rip out existing tooling."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Who built SlingDoc?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "SlingDoc was built by Alejandro Argüello and the team at Core Goals Consulting, based in San Antonio and Austin, Texas. Alejandro previously helped build the banking industry's first 100% no-touch loan-origination system and holds multiple patents in transactional document processing."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Where is worker data stored?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Worker data and document captures are stored on AWS infrastructure with 99.99% durability and are accessed through a secure cloud dashboard for managers."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <!-- Skip link for keyboard users -->
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <!-- ============================================================ -->
+    <!-- HEADER / NAV                                                   -->
+    <!-- ============================================================ -->
+    <header class="site-header" role="banner">
+      <a href="#top" class="brand" aria-label="SlingDoc — home">
+        <span class="brand__logo" aria-hidden="true">
+          <span class="brand__sling">sling</span><span class="brand__doc">doc</span>
+          <svg class="brand__arc" viewBox="0 0 180 40" aria-hidden="true">
+            <path
+              d="M4 30 C 50 4, 130 4, 176 30"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="4"
+              stroke-linecap="round"
+            />
+          </svg>
+        </span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#how-it-works">How it works</a>
+        <a href="#story">Story</a>
+        <a href="#features">Features</a>
+        <a href="#use-cases">Use cases</a>
+        <a href="#integration">Integration</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="header-actions">
+        <button
+          class="motion-toggle"
+          id="motion-toggle"
+          type="button"
+          aria-pressed="false"
+          title="Reduce motion"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16">
+            <path
+              d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              fill="none"
+            />
+          </svg>
+          <span class="motion-toggle__label">Reduce motion</span>
+        </button>
+        <a href="#cta" class="btn btn--primary btn--sm">Book a demo</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ============================================================ -->
+      <!-- HERO                                                            -->
+      <!-- ============================================================ -->
+      <section id="top" class="hero" aria-labelledby="hero-heading">
+        <div class="hero__grid">
+          <div class="hero__copy">
+            <p class="eyebrow">
+              <span class="eyebrow__dot" aria-hidden="true"></span>
+              SMS-first · Built for everyone
+            </p>
+
+            <h1 id="hero-heading" class="display">
+              Accessible time and document&nbsp;capture for the workers your other tools
+              <em class="accent">forget</em>.
+            </h1>
+
+            <p class="lede">
+              SlingDoc runs over SMS and your workers' existing phones — so blind and
+              visually impaired staff, field crews, and low-connectivity teams can clock
+              in, send documents, and keep payroll accurate. No app to roll out.
+            </p>
+
+            <div class="hero__ctas">
+              <a href="#cta" class="btn btn--primary">Book a demo</a>
+              <a href="#how-it-works" class="btn btn--ghost">
+                See how it works
+                <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                </svg>
+              </a>
+            </div>
+
+            <p class="hero__tagline">Text in. Clock in. Documents done.</p>
+          </div>
+
+          <!-- ============================================================ -->
+          <!-- 3D ANIMATION: phone → photo of badge → "clock-in" SMS → card   -->
+          <!-- ============================================================ -->
+          <div class="stage" role="region" aria-labelledby="stage-heading">
+            <h2 id="stage-heading" class="sr-only">
+              Animated demonstration: how an employee clocks in with SlingDoc
+            </h2>
+
+            <!-- The Three.js canvas mounts here -->
+            <div class="stage__canvas" id="stage-canvas"></div>
+
+            <!-- "It's that easy!" HTML overlay card (shown at end of loop) -->
+            <div class="easy-card" id="easy-card" aria-hidden="true">
+              <div class="easy-card__check">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                  <path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                </svg>
+              </div>
+              <div class="easy-card__text">
+                <strong>It's that easy!</strong>
+                <span>Clocked in at 7:58 AM · Jobsite A</span>
+              </div>
+            </div>
+
+            <!-- Phase label (visible + narrated to screen reader) -->
+            <div class="stage__label" id="stage-label" aria-live="polite" aria-atomic="true">
+              Warming up…
+            </div>
+
+            <!-- Stage controls -->
+            <div class="stage__controls" role="group" aria-label="Animation controls">
+              <button id="stage-play" type="button" class="stage__btn" aria-label="Pause animation">
+                <svg class="icon-pause" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                  <rect x="6" y="5" width="4" height="14" fill="currentColor" rx="1" />
+                  <rect x="14" y="5" width="4" height="14" fill="currentColor" rx="1" />
+                </svg>
+                <svg class="icon-play" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                  <path d="M7 5v14l12-7z" fill="currentColor" />
+                </svg>
+              </button>
+              <button id="stage-replay" type="button" class="stage__btn" aria-label="Replay from beginning">
+                <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                  <path d="M3 12a9 9 0 109-9v4M3 3v5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                </svg>
+              </button>
+            </div>
+
+            <!-- Static fallback shown when motion is reduced -->
+            <div class="stage__static" id="stage-static" hidden>
+              <div class="stage__static-phone">
+                <div class="stage__static-screen">
+                  <div class="mono">To: SlingDoc</div>
+                  <div class="mono big">clock-in</div>
+                  <div class="mono tiny">+ photo of badge</div>
+                </div>
+              </div>
+              <p>
+                <strong>Text "clock-in" and snap a photo of your badge.</strong>
+                Payroll receives clean data. Managers see who's on site in real time.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trust strip -->
+        <ul class="trust-strip" aria-label="Key product attributes">
+          <li><span class="trust-dot" aria-hidden="true"></span>No app to download</li>
+          <li><span class="trust-dot" aria-hidden="true"></span>Screen-reader friendly</li>
+          <li><span class="trust-dot" aria-hidden="true"></span>Works on low connectivity</li>
+          <li><span class="trust-dot" aria-hidden="true"></span>Integrates with your payroll</li>
+        </ul>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- STORY                                                           -->
+      <!-- ============================================================ -->
+      <section id="story" class="story" aria-labelledby="story-heading">
+        <div class="story__inner">
+          <p class="eyebrow eyebrow--accent">
+            <span class="eyebrow__dot" aria-hidden="true"></span>
+            Why we built it
+          </p>
+          <h2 id="story-heading" class="display display--md">
+            A sling is a <em class="accent">simple tool</em> that in the right hands,
+            can solve enormous problems.
+          </h2>
+
+          <div class="story__body">
+            <p>
+              SlingDoc was created by <strong>Alejandro Argüello</strong> and the team at
+              Core Goals Consulting. Alejandro came from banking, where he helped build
+              the industry's first 100% no-touch loan-origination system and holds
+              multiple patents in transactional document processing.
+            </p>
+
+            <blockquote class="pullquote">
+              <p>
+                "I'm relentless about edge cases — especially people and situations
+                software tends to treat as afterthoughts. Blind or visually impaired
+                employees, field workers in low-connectivity areas, people who are anxious
+                about technology: those are the users I design for first, not last."
+              </p>
+              <cite>— Alejandro Argüello, Founder</cite>
+            </blockquote>
+
+            <p>
+              The name comes from David and Goliath. A sling — like a cane — is a simple,
+              effective tool that, in the right hands, conquers the biggest challenges.
+              We kept that in mind while designing every interaction.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- HOW IT WORKS                                                    -->
+      <!-- ============================================================ -->
+      <section id="how-it-works" class="how" aria-labelledby="how-heading">
+        <div class="how__head">
+          <p class="eyebrow">
+            <span class="eyebrow__dot" aria-hidden="true"></span>
+            How it works
+          </p>
+          <h2 id="how-heading" class="display display--md">
+            Three simple steps. <em class="accent">No new app.</em>
+          </h2>
+        </div>
+
+        <ol class="steps">
+          <li class="step">
+            <span class="step__num" aria-hidden="true">01</span>
+            <h3>Worker texts &amp; snaps</h3>
+            <p>
+              Workers text <code class="mono">IN</code> or <code class="mono">OUT</code>
+              and snap a photo of required documents — a W-4, certification, voided
+              check. No app. No login. No training.
+            </p>
+            <div class="step__chip">
+              <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              SMS · RCS · Photo
+            </div>
+          </li>
+
+          <li class="step">
+            <span class="step__num" aria-hidden="true">02</span>
+            <h3>SlingDoc processes</h3>
+            <p>
+              SlingDoc confirms via SMS, tracks the time entry, catalogs the document,
+              and surfaces anything outstanding — all in real time on the manager
+              dashboard.
+            </p>
+            <div class="step__chip">
+              <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+                <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              Real-time confirmation
+            </div>
+          </li>
+
+          <li class="step">
+            <span class="step__num" aria-hidden="true">03</span>
+            <h3>Systems sync</h3>
+            <p>
+              Payroll, HR, and accounting receive clean data in the shape they already
+              expect. No rip-and-replace. No new terminology. Integration lives in
+              SlingDoc, not in your team.
+            </p>
+            <div class="step__chip">
+              <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+                <path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" />
+              </svg>
+              Payroll · HR · Accounting
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- FEATURES                                                       -->
+      <!-- ============================================================ -->
+      <section id="features" class="features" aria-labelledby="features-heading">
+        <div class="features__head">
+          <p class="eyebrow">
+            <span class="eyebrow__dot" aria-hidden="true"></span>
+            Features &amp; benefits
+          </p>
+          <h2 id="features-heading" class="display display--md">
+            Crisp value. <em class="accent">Zero fluff.</em>
+          </h2>
+        </div>
+
+        <ul class="feature-grid" role="list">
+          <li class="feature">
+            <span class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <h3>SMS-first time &amp; attendance</h3>
+            <p>Workers text simple keywords. SlingDoc confirms every entry and tracks location across multiple jobsites.</p>
+          </li>
+
+          <li class="feature">
+            <span class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22">
+                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8" fill="none" />
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8" fill="none" />
+              </svg>
+            </span>
+            <h3>Built for blind &amp; VI workers</h3>
+            <p>Fully compatible with VoiceOver, TalkBack, and every screen reader your team already uses. Accessibility isn't a toggle — it's the foundation.</p>
+          </li>
+
+          <li class="feature">
+            <span class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <h3>Faster onboarding</h3>
+            <p>Request W-4s, I-9s, certifications. Workers reply with a photo. SlingDoc files and tracks what's outstanding — no fax, scan, or email chain.</p>
+          </li>
+
+          <li class="feature">
+            <span class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22">
+                <path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" />
+              </svg>
+            </span>
+            <h3>Fits your payroll stack</h3>
+            <p>Imports existing payroll data, matches your terminology, sets up data retention, and trains your managers. We integrate; your stack stays.</p>
+          </li>
+
+          <li class="feature">
+            <span class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22">
+                <rect x="3" y="4" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8" fill="none" />
+                <path d="M3 9h18M8 18v2M16 18v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+              </svg>
+            </span>
+            <h3>Manager dashboard</h3>
+            <p>See at a glance who's clocked in, where, and on which contract or product line. Broadcast last-minute changes to crews with one message.</p>
+          </li>
+
+          <li class="feature">
+            <span class="feature__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22">
+                <path d="M5 12l4-8 6 16 4-8" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <h3>Low-connectivity ready</h3>
+            <p>SMS and RCS run on mobile networks that have been proven in the hardest places to work. No static IP, no fragile app.</p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- COMMUNITY & ACCESSIBILITY                                      -->
+      <!-- ============================================================ -->
+      <section class="community" aria-labelledby="community-heading">
+        <div class="community__inner">
+          <p class="eyebrow eyebrow--accent">
+            <span class="eyebrow__dot" aria-hidden="true"></span>
+            More than a tool
+          </p>
+          <h2 id="community-heading" class="display display--md">
+            We design for the people software usually <em class="accent">forgets</em>.
+          </h2>
+          <p class="community__lede">
+            Payroll and paperwork shouldn't be a barrier to participation. Every feature
+            in SlingDoc is built to make sure the answer to "who's included?" is
+            <strong>everyone</strong>.
+          </p>
+
+          <figure class="testimonial">
+            <blockquote>
+              <p>
+                "We came for the time clock. We stayed because SlingDoc solved our
+                document chaos — and our blind staff can use it as easily as anyone."
+              </p>
+            </blockquote>
+            <figcaption>— Operations Director · Multi-site program</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- USE CASES                                                      -->
+      <!-- ============================================================ -->
+      <section id="use-cases" class="use-cases" aria-labelledby="uc-heading">
+        <div class="use-cases__head">
+          <p class="eyebrow">
+            <span class="eyebrow__dot" aria-hidden="true"></span>
+            Use cases
+          </p>
+          <h2 id="uc-heading" class="display display--md">
+            Before SlingDoc. <em class="accent">After SlingDoc.</em>
+          </h2>
+        </div>
+
+        <div class="uc-grid">
+          <article class="uc-card">
+            <h3>Multi-site construction</h3>
+            <div class="uc-ba">
+              <div class="uc-before">
+                <span class="uc-tag uc-tag--before">Before</span>
+                <ul>
+                  <li>Supervisors chase paper time sheets from three jobsites</li>
+                  <li>Payroll errors fixed days later, often by phone</li>
+                </ul>
+              </div>
+              <div class="uc-after">
+                <span class="uc-tag uc-tag--after">After</span>
+                <ul>
+                  <li>Crews text <code class="mono">IN</code>/<code class="mono">OUT</code> from each site</li>
+                  <li>Manager sees live attendance by contract and location</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="uc-card">
+            <h3>Manufacturing, rotating shifts</h3>
+            <div class="uc-ba">
+              <div class="uc-before">
+                <span class="uc-tag uc-tag--before">Before</span>
+                <ul>
+                  <li>Hours lumped together, no per-product-line tracking</li>
+                  <li>Kiosk downtime breaks attendance data</li>
+                </ul>
+              </div>
+              <div class="uc-after">
+                <span class="uc-tag uc-tag--after">After</span>
+                <ul>
+                  <li>Workers log hours against specific product lines via SMS</li>
+                  <li>Supervisors add or remove lines in seconds</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="uc-card">
+            <h3>Programs employing blind/VI staff</h3>
+            <div class="uc-ba">
+              <div class="uc-before">
+                <span class="uc-tag uc-tag--before">Before</span>
+                <ul>
+                  <li>Time-clock apps with dense visual UIs — unusable with screen readers</li>
+                  <li>Staff depend on sighted coworkers to clock in</li>
+                </ul>
+              </div>
+              <div class="uc-after">
+                <span class="uc-tag uc-tag--after">After</span>
+                <ul>
+                  <li>Same SMS flow works with VoiceOver out of the box</li>
+                  <li>Independent clock-in. Audible confirmation. Dignity, built in.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="uc-card">
+            <h3>Distributed nonprofit case workers</h3>
+            <div class="uc-ba">
+              <div class="uc-before">
+                <span class="uc-tag uc-tag--before">Before</span>
+                <ul>
+                  <li>Mileage and visits logged in weekly email spreadsheets</li>
+                  <li>Documents lost in scan-and-email chains</li>
+                </ul>
+              </div>
+              <div class="uc-after">
+                <span class="uc-tag uc-tag--after">After</span>
+                <ul>
+                  <li>Workers text updates and photograph documents in the field</li>
+                  <li>Clean data lands directly in accounting</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- INTEGRATION & SECURITY                                         -->
+      <!-- ============================================================ -->
+      <section id="integration" class="integration" aria-labelledby="int-heading">
+        <div class="integration__grid">
+          <div class="integration__copy">
+            <p class="eyebrow">
+              <span class="eyebrow__dot" aria-hidden="true"></span>
+              Integration &amp; security
+            </p>
+            <h2 id="int-heading" class="display display--md">
+              SlingDoc slots into your existing systems. <em class="accent">Nothing gets ripped out.</em>
+            </h2>
+            <p>
+              We bring a banking-grade mindset to every transaction. Our founders built
+              the mobile check-deposit technology that became an industry standard — we
+              treat every clock-in and document capture with that same rigor.
+            </p>
+            <ul class="int-list">
+              <li><strong>Import existing payroll data</strong> — we match your terminology, not the other way around.</li>
+              <li><strong>Configurable data retention</strong> — your data is protected across every phase of integration.</li>
+              <li><strong>Enterprise cloud storage</strong> — 99.99% availability on AWS.</li>
+              <li><strong>Training &amp; follow-up support</strong> — managers get confident fast.</li>
+              <li><strong>24/7 turn-key</strong> — built for operations that never stop.</li>
+            </ul>
+          </div>
+
+          <!-- Simple HTML/SVG diagram (accessible alternative to a 3D visual) -->
+          <figure class="int-diagram" aria-label="Diagram: Workers communicate via SMS to SlingDoc, which routes data into existing Payroll, HR, and Accounting systems.">
+            <svg viewBox="0 0 400 320" role="img" aria-hidden="true">
+              <defs>
+                <linearGradient id="bridgeGrad" x1="0" x2="1">
+                  <stop offset="0" stop-color="#B8E639" stop-opacity="0.15" />
+                  <stop offset="0.5" stop-color="#B8E639" stop-opacity="0.9" />
+                  <stop offset="1" stop-color="#B8E639" stop-opacity="0.15" />
+                </linearGradient>
+              </defs>
+
+              <!-- Workers side -->
+              <g transform="translate(20,40)">
+                <rect x="0" y="0" width="110" height="240" rx="10" fill="#F0EEE6" stroke="#0A1A3C" stroke-width="1.5" />
+                <text x="55" y="22" text-anchor="middle" font-family="Manrope, sans-serif" font-size="12" font-weight="600" fill="#0A1A3C">WORKERS</text>
+                <g font-family="Manrope, sans-serif" font-size="11" fill="#0A1A3C">
+                  <circle cx="25" cy="60" r="12" fill="#fff" stroke="#0A1A3C" stroke-width="1.2" />
+                  <text x="45" y="64">Construction</text>
+                  <circle cx="25" cy="105" r="12" fill="#fff" stroke="#0A1A3C" stroke-width="1.2" />
+                  <text x="45" y="109">Manufacturing</text>
+                  <circle cx="25" cy="150" r="12" fill="#fff" stroke="#0A1A3C" stroke-width="1.2" />
+                  <text x="45" y="154">Blind/VI staff</text>
+                  <circle cx="25" cy="195" r="12" fill="#fff" stroke="#0A1A3C" stroke-width="1.2" />
+                  <text x="45" y="199">Field crews</text>
+                </g>
+              </g>
+
+              <!-- Bridge -->
+              <rect x="140" y="140" width="120" height="40" rx="6" fill="url(#bridgeGrad)" stroke="#0A1A3C" stroke-width="1.2" />
+              <text x="200" y="165" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#0A1A3C" font-weight="600">SlingDoc · SMS + RCS</text>
+
+              <!-- Systems side -->
+              <g transform="translate(270,40)">
+                <rect x="0" y="0" width="110" height="240" rx="10" fill="#0A1A3C" />
+                <text x="55" y="22" text-anchor="middle" font-family="Manrope, sans-serif" font-size="12" font-weight="600" fill="#B8E639">SYSTEMS</text>
+                <g font-family="Manrope, sans-serif" font-size="11" fill="#fff">
+                  <rect x="15" y="45" width="80" height="30" rx="4" fill="#1E3A7A" />
+                  <text x="55" y="64" text-anchor="middle">Payroll</text>
+                  <rect x="15" y="90" width="80" height="30" rx="4" fill="#1E3A7A" />
+                  <text x="55" y="109" text-anchor="middle">HR</text>
+                  <rect x="15" y="135" width="80" height="30" rx="4" fill="#1E3A7A" />
+                  <text x="55" y="154" text-anchor="middle">Accounting</text>
+                  <rect x="15" y="180" width="80" height="30" rx="4" fill="#1E3A7A" />
+                  <text x="55" y="199" text-anchor="middle">Your tools</text>
+                </g>
+              </g>
+            </svg>
+            <figcaption>Workers and back-office systems, connected over SMS.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- FAQ — visible, matches JSON-LD FAQPage exactly                 -->
+      <!-- ============================================================ -->
+      <section id="faq" class="faq" aria-labelledby="faq-heading">
+        <div class="faq__inner">
+          <p class="eyebrow eyebrow--accent">
+            <span class="eyebrow__dot" aria-hidden="true"></span>
+            Frequently asked
+          </p>
+          <h2 id="faq-heading" class="display display--md">
+            Common questions about <em class="accent">SlingDoc</em>.
+          </h2>
+
+          <dl class="faq__list">
+            <div class="faq__item">
+              <dt>Does SlingDoc require workers to download an app?</dt>
+              <dd>No. SlingDoc works entirely over SMS and MMS. Workers use the messaging app that already comes on their phone — nothing to install, no account to create, no password to remember.</dd>
+            </div>
+            <div class="faq__item">
+              <dt>Is SlingDoc compatible with screen readers?</dt>
+              <dd>Yes. SlingDoc is designed for blind and visually impaired workers from the start. Because it runs inside the phone's native Messages app, it inherits whatever screen reader, voice assistant, or accessibility setting the user already has configured — VoiceOver, TalkBack, or otherwise — instead of requiring a separate accessible interface.</dd>
+            </div>
+            <div class="faq__item">
+              <dt>What if a worker is on a job site with no cell data?</dt>
+              <dd>SMS works on almost any cellular signal — including signals too weak to load data-based apps. Workers can clock in by text even on low-connectivity sites. Photo attachments send when signal is available; the clock-in timestamp is recorded at the moment of texting.</dd>
+            </div>
+            <div class="faq__item">
+              <dt>What payroll and HR systems does SlingDoc integrate with?</dt>
+              <dd>SlingDoc syncs with major payroll, HR, and accounting platforms. Time records, document metadata, and worker profiles flow into the systems your finance and HR teams already use, so you do not need to rip out existing tooling.</dd>
+            </div>
+            <div class="faq__item">
+              <dt>Who built SlingDoc?</dt>
+              <dd>SlingDoc was built by Alejandro Argüello and the team at Core Goals Consulting, based in San Antonio and Austin, Texas. Alejandro previously helped build the banking industry's first 100% no-touch loan-origination system and holds multiple patents in transactional document processing.</dd>
+            </div>
+            <div class="faq__item">
+              <dt>Where is worker data stored?</dt>
+              <dd>Worker data and document captures are stored on AWS infrastructure with 99.99% durability and accessed through a secure cloud dashboard for managers.</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- FINAL CTA                                                      -->
+      <!-- ============================================================ -->
+      <section id="cta" class="cta" aria-labelledby="cta-heading">
+        <div class="cta__inner">
+          <h2 id="cta-heading" class="display display--lg">
+            Join our campaign to make time and document workflows <em class="accent">simple, accessible, and fair</em>.
+          </h2>
+          <p>
+            We'll map your workflow, show you SlingDoc in your world, and answer every
+            integration question you've got.
+          </p>
+          <div class="cta__actions">
+            <a href="mailto:hello@slingdoc.com?subject=SlingDoc%20demo%20request" class="btn btn--primary btn--lg">Book a demo</a>
+            <a href="mailto:hello@slingdoc.com?subject=5-minute%20SlingDoc%20overview" class="btn btn--ghost btn--lg">Get a 5-minute email overview</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER                                                          -->
+    <!-- ============================================================ -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="site-footer__grid">
+        <div>
+          <span class="brand__logo" aria-hidden="true" style="font-size: 1.5rem">
+            <span class="brand__sling">sling</span><span class="brand__doc">doc</span>
+          </span>
+          <p class="site-footer__tagline">Accessible time and document capture, over SMS.</p>
+          <address class="site-footer__address" itemscope itemtype="https://schema.org/Organization">
+            <span itemprop="name" class="sr-only">SlingDoc</span>
+            <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+              <span itemprop="addressLocality">San Antonio</span> ·
+              <span itemprop="addressLocality">Austin</span> ·
+              Serving clients nationwide
+            </span>
+            <br />
+            <a href="mailto:hello@slingdoc.com" itemprop="email">hello@slingdoc.com</a>
+          </address>
+        </div>
+        <nav aria-label="Footer product">
+          <h3>Product</h3>
+          <ul>
+            <li><a href="#how-it-works">How it works</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#use-cases">Use cases</a></li>
+            <li><a href="#integration">Integration</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Footer company">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="#story">Story</a></li>
+            <li><a href="#cta">Book a demo</a></li>
+            <li><a href="mailto:hello@slingdoc.com">Contact</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Footer legal">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/terms">Terms of Service</a></li>
+            <li><a href="/accessibility">Accessibility statement</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        <small>© 2026 SlingDoc · Core Goals Consulting</small>
+        <small>Designed with accessibility first.</small>
+      </div>
+    </footer>
+
+    <!-- Main scripts (Three.js scene + UI interactions) -->
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
